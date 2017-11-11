@@ -1,6 +1,6 @@
 <template>
-  <div class="error-page window-height window-width bg-light column items-center no-wrap">
-    <div class="error-code bg-primary flex items-center content-center justify-center">
+  <div class="error-page window-width bg-light column items-center no-wrap">
+    <div class="error-code bg-tertiary flex items-center content-center justify-center">
       404
     </div>
     <div>
@@ -10,7 +10,7 @@
         <p class="text-center group">
           <q-btn
             v-if="canGoBack"
-            color="primary"
+            color="tertiary"
             push
             @click="goBack"
             icon="keyboard_arrow_left"
@@ -18,7 +18,7 @@
             Go back
           </q-btn>
           <q-btn
-            color="primary"
+            color="tertiary"
             push
             @click="$router.replace('/')"
             icon-right="home"
@@ -58,10 +58,10 @@ export default {
     height 50vh
     width 100%
     padding-top 15vh
-    @media (orientation: landscape) { 
+    @media (orientation: landscape) {
       font-size 30vw
     }
-    @media (orientation: portrait) { 
+    @media (orientation: portrait) {
       font-size 30vh
     }
     color rgba(255, 255, 255, .2)
