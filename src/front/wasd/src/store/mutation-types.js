@@ -1,0 +1,2 @@
+export const LOAD_PLATFORMS = 'LOAD_PLATFORMS'
+export const LOAD_GENRES = 'LOAD_GENRES'

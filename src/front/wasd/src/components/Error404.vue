@@ -1,5 +1,5 @@
 <template>
-  <div class="error-page window-width bg-light column items-center no-wrap">
+  <div class="error-page window-width column items-center no-wrap">
     <div class="error-code bg-tertiary flex items-center content-center justify-center">
       404
     </div>

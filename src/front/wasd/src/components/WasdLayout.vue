@@ -147,9 +147,9 @@
 
     methods: {
       navigate () {
-        this.left = false
-
         this.$refs.layout.hideLeft()
+
+        this.left = false
       }
     }
   }

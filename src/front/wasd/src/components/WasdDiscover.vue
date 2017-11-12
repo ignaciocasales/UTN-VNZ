@@ -1,19 +1,25 @@
 <template>
   <div class="layout-padding">
     <div class="row justify-center">
-      <div class="col-12" style="max-width: 2000px">
-        <p>Popular games</p>
+      <div class="col-12" style="max-width: 1800px">
+        <h4 class="text-primary">Popular games</h4>
       </div>
     </div>
     <div class="row justify-center">
-      <div class="col-12" style="max-width: 2000px">
+      <div class="col-12" style="max-width: 1800px">
         <div class="row justify-center">
           <q-infinite-scroll
             :handler="loadMore"
           >
             <q-card inline v-for="(game, index) in popularGames" :data="game" :key="game.id">
-              <q-card-media style="max-height: 250px;" overlay-position="full" class="cursor-pointer" @click="$router.push('/')">
-                <img :src="('cover' in game) ? game.cover.url.replace('t_thumb','t_cover_uniform') : 'http://via.placeholder.com/210x250'">
+              <q-card-media style="max-height: 250px;" overlay-position="full" class="cursor-pointer" @click="$router.push({ name: 'game', params: { id: game.id }})">
+                <img
+                  :src="('cover' in game) ?
+                    game.cover.url.replace('t_thumb','t_cover_uniform') :
+                  ('screenshots' in game) ?
+                    game.screenshots[0].url.replace('t_thumb','t_cover_uniform') :
+                  'http://via.placeholder.com/210x250'"
+                >
 
                 <q-card-title slot="overlay">
                   <div class="text-secondary absolute-center"><strong>See More</strong></div>
@@ -97,8 +103,8 @@
     },
 
     methods: {
-      setPopularGames (post) {
-        this.popularGames = post
+      setPopularGames (gamesList) {
+        this.popularGames = gamesList
         this.popularGamesLoaded = true
       },
 
@@ -116,10 +122,10 @@
         // make some Ajax call then call done()
         igdb.getPopularGames(20 * index)
           .then((response) => {
-            response.data.forEach((currentValue, index, array) => {
-              this.popularGames.push(currentValue)
-              done()
+            response.data.forEach((currentGame) => {
+              this.popularGames.push(currentGame)
             })
+            done()
           })
           .catch((error) => {
             console.log(error)
