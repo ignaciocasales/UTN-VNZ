@@ -43,7 +43,7 @@ export default new VueRouter({
         },
         {
           path: '/discover',
-          component: load('Error404')
+          component: load('WasdDiscover')
         },
         {
           path: '/genres',
