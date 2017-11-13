@@ -33,6 +33,20 @@ const actions = {
         resolve()
       }
     })
+  },
+
+  loadAllGenres ({ commit }) {
+    return new Promise((resolve, reject) => {
+      igdb.getAllGenres()
+        .then((response) => {
+          commit(types.LOAD_ALL_GENRES, { genres: response.data })
+          resolve()
+        })
+        .catch((error) => {
+          console.error('WASD Games | ERROR Retrieving Genres.', error)
+          reject(error)
+        })
+    })
   }
 }
 
@@ -41,6 +55,10 @@ const mutations = {
     genres.forEach((current) => {
       state.all.push(current)
     })
+  },
+
+  [types.LOAD_ALL_GENRES] (state, { genres }) {
+    state.all = genres
   }
 }
 

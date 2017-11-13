@@ -81,11 +81,48 @@ export default {
     })
   },
 
+  getAllGenres () {
+    return axios({
+      baseURL: ENDPOINT,
+
+      url: '/genres/?fields=id,name&limit=50&offset=0',
+
+      method: 'get',
+
+      headers: {
+        'user-key': API_KEY,
+        'Accept': 'application/json'
+      },
+
+      timeout: TIMEOUT
+    })
+  },
+
   getRandomGames () {
     return axios({
       baseURL: ENDPOINT,
 
       url: '/games/?fields=*&limit=4&filter[popularity][gt]=5&filter[created_at][gt]=' + randomDate(),
+
+      method: 'get',
+
+      headers: {
+        'user-key': API_KEY,
+        'Accept': 'application/json'
+      },
+
+      timeout: TIMEOUT
+    })
+  },
+
+  getRandomGamesByGenre (genreId, quantity) {
+    return axios({
+      baseURL: ENDPOINT,
+
+      url: '/games/?fields=*' +
+            '&limit=' + quantity +
+            '&filter[genres][eq]=' + genreId +
+            '&filter[created_at][gt]=' + randomDate(),
 
       method: 'get',
 

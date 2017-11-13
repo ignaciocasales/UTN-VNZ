@@ -51,7 +51,7 @@ export default new VueRouter({
         {
           path: '/genres',
 
-          component: load('Error404')
+          component: load('WasdGenres')
         },
         {
           path: '/platforms',

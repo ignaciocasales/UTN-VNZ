@@ -30,7 +30,9 @@
               </q-card-title>
             </q-card>
 
-            <q-spinner-dots slot="message" :size="40"></q-spinner-dots>
+            <div class="row justify-center" style="margin-bottom: 50px;">
+              <q-spinner-dots slot="message" :size="40" />
+            </div>
           </q-infinite-scroll>
         </div>
       </div>
