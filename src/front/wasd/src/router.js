@@ -96,6 +96,13 @@ export default new VueRouter({
           component: load('WasdGameInfosite')
         },
         {
+          path: '/platforms/:id',
+
+          name: 'platforms',
+
+          component: load('WasdGamesByPlatform')
+        },
+        {
           path: '/engines/:id',
 
           name: 'engine',

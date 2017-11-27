@@ -3,14 +3,14 @@
     <div class="row justify-center">
       <div class="col-12" style="max-width: 1800px">
         <div class="row justify-center">
-          <h4 class="text-primary">Games by platform</h4>
+          <h4 class="text-primary">Most Popular Platforms</h4>
         </div>
       </div>
     </div>
     <div class="row justify-center">
       <div class="col-12" style="max-width: 1800px">
         <h5 class="emphasize text-amber" v-if="pc.length > 0">PC >
-          <a href="" @click.prevent="" class="text-muted">See more</a>
+          <router-link :to="{ name: 'platforms', params: { id: 6 }}" class="text-muted">See more</router-link>
         </h5>
         <div>
           <div class="row justify-center">
@@ -25,7 +25,7 @@
           </div>
         </div>
         <h5 class="emphasize text-amber" v-if="ps4.length > 0">Play Station 4 >
-          <a href="" @click.prevent="" class="text-muted">See more</a>
+          <router-link :to="{ name: 'platforms', params: { id: 48 }}" class="text-muted">See more</router-link>
         </h5>
         <div>
           <div class="row justify-center">
@@ -40,7 +40,7 @@
           </div>
         </div>
         <h5 class="emphasize text-amber" v-if="xboxOne.length > 0">Xbox One >
-          <a href="" @click.prevent="" class="text-muted">See more</a>
+          <router-link :to="{ name: 'platforms', params: { id: 49 }}" class="text-muted">See more</router-link>
         </h5>
         <div>
           <div class="row justify-center">
@@ -55,7 +55,7 @@
           </div>
         </div>
         <h5 class="emphasize text-amber" v-if="nintendoSwitch.length > 0">Nintendo Switch >
-          <a href="" @click.prevent="" class="text-muted">See more</a>
+          <router-link :to="{ name: 'platforms', params: { id: 130 }}" class="text-muted">See more</router-link>
         </h5>
         <div>
           <div class="row justify-center">

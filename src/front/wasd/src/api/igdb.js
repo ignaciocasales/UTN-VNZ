@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const ENDPOINT = '/igdb'
-const API_KEY = 'e544bd4d11d8e8b6b46e47bbbe6f7254'
+const API_KEY = 'api-key'
 const TIMEOUT = 10000
 
 const randomDate = () => {
@@ -135,11 +135,28 @@ export default {
     })
   },
 
+  getGamesByPlatform (platformId, offset) {
+    return axios({
+      baseURL: ENDPOINT,
+
+      url: '/games/?fields=*&limit=50&filter[platforms][eq]=' + platformId + '&offset=' + offset,
+
+      method: 'get',
+
+      headers: {
+        'user-key': API_KEY,
+        'Accept': 'application/json'
+      },
+
+      timeout: TIMEOUT
+    })
+  },
+
   getRandomGamesByPlatform (platformId) {
     return axios({
       baseURL: ENDPOINT,
 
-      url: '/games/?fields=*&limit=4&filter[popularity][gt]=50&filter[platforms][eq]=' + platformId +
+      url: '/games/?fields=*&limit=12&filter[popularity][gt]=3&filter[platforms][eq]=' + platformId +
       '&filter[created_at][gt]=' + randomDate(),
 
       method: 'get',

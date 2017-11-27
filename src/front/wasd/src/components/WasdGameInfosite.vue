@@ -35,7 +35,7 @@
                     <dt class="capitalize">genres</dt>
                     <dd class="emphasize text-justify text-green">
                       <span v-if="genresLoading">Loading ...</span>
-                      <span v-for="(genre, index) in gameGenres" :data="genre" :key="genre.id">
+                      <span v-for="(genre, index) in gameGenres" :data="genre" :key="genre.id" style="display: inline-block;">
                         {{ genre.name }}
                         <span v-if="(index + 1) < gameGenres.length">
                           ,
@@ -52,7 +52,7 @@
                     <dt class="capitalize">platforms</dt>
                     <dd class="emphasize text-justify text-secondary">
                       <span v-if="platformsLoading">Loading ...</span>
-                      <span v-for="(platform, index) in gamePlatforms" :data="platform" :key="platform.id">
+                      <span v-for="(platform, index) in gamePlatforms" :data="platform" :key="platform.id" style="display: inline-block;">
                         {{ platform.name }}
                         <span v-if="(index + 1) < gamePlatforms.length">
                           ,
