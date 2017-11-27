@@ -76,12 +76,12 @@ export default new VueRouter({
         {
           path: '/engines',
 
-          component: load('Error404')
+          component: load('WasdGameEngines')
         },
         {
           path: '/news',
 
-          component: load('Error404')
+          component: load('WasdNews')
         },
         {
           path: '/search',

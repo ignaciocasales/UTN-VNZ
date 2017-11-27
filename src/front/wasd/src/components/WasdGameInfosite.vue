@@ -2,14 +2,25 @@
   <div class="layout-padding">
     <div class="row justify-center">
       <div class="col-12" style="max-width: 1800px">
-        <q-parallax :src="('screenshots' in gameDetails) ? gameDetails.screenshots[0].url.replace('t_thumb','t_screenshot_big') : 'http://via.placeholder.com/1020x250'" :height="300">
-          <div slot="loading"><q-spinner color="secondary"/></div>
+        <q-parallax
+          :src="('screenshots' in gameDetails) ?
+           gameDetails.screenshots[0].url.replace('t_thumb','t_screenshot_big') :
+            'http://via.placeholder.com/1020x250'"
+          :height="300"
+        >
+          <div slot="loading">
+            <q-spinner color="secondary"/>
+          </div>
         </q-parallax>
         <h4>{{ gameDetails.name }}</h4>
         <div class="row justify-center">
           <q-card class="shadow-10" style="max-height: 250px;">
             <q-card-media>
-              <img :src="('cover' in gameDetails) ? gameDetails.cover.url.replace('t_thumb','t_cover_uniform') : 'http://via.placeholder.com/210x250'">
+              <img
+                :src="('cover' in gameDetails) ?
+                 gameDetails.cover.url.replace('t_thumb','t_cover_uniform') :
+                  'http://via.placeholder.com/210x250'"
+              >
               <q-card-title slot="overlay">
                 Cover
               </q-card-title>
@@ -23,7 +34,13 @@
                     <dt class="capitalize">genres</dt>
                     <dd class="emphasize text-justify text-green">
                       <span v-if="genresLoading">Loading ...</span>
-                      <span v-for="(genre, index) in gameGenres" :data="genre" :key="genre.id">{{ genre.name }} <span v-if="(index + 1) < gameGenres.length">,</span>&nbsp;</span>
+                      <span v-for="(genre, index) in gameGenres" :data="genre" :key="genre.id">
+                        {{ genre.name }}
+                        <span v-if="(index + 1) < gameGenres.length">
+                          ,
+                        </span>
+                        &nbsp;
+                      </span>
                     </dd>
                   </div>
                   <div v-if="('category' in gameDetails)">
@@ -34,7 +51,13 @@
                     <dt class="capitalize">platforms</dt>
                     <dd class="emphasize text-justify text-secondary">
                       <span v-if="platformsLoading">Loading ...</span>
-                      <span v-for="(platform, index) in gamePlatforms" :data="platform" :key="platform.id">{{ platform.name }} <span v-if="(index + 1) < gamePlatforms.length">,</span>&nbsp;</span>
+                      <span v-for="(platform, index) in gamePlatforms" :data="platform" :key="platform.id">
+                        {{ platform.name }}
+                        <span v-if="(index + 1) < gamePlatforms.length">
+                          ,
+                        </span>
+                        &nbsp;
+                      </span>
                     </dd>
                   </div>
                   <div v-if="('summary' in gameDetails)">
@@ -45,10 +68,18 @@
                     <br>
                     <dt class="capitalize"> </dt>
                     <dd>
-                      <a v-for="(website, index) in gameDetails.websites" :data="website" :key="website.category" :href="website.url" target="_blank" class="">
-                        <q-icon :name="getExternalWebsiteIcon(website.category)" style="font-size: 25px"/>
-                        {{ getExternalWebsiteDetails(website.category) }}
-                        &nbsp;
+                      <a
+                        v-for="(website, index) in gameDetails.websites"
+                        :data="website"
+                        :key="website.category"
+                        :href="website.url"
+                        target="_blank"
+                      >
+                        <span style="display: inline-block; padding: 5px;">
+                          <q-icon :name="getExternalWebsiteIcon(website.category)" style="font-size: 25px"/>
+                          {{ getExternalWebsiteDetails(website.category) }}
+                          &nbsp;
+                        </span>
                       </a>
                     </dd>
                   </div>
@@ -57,25 +88,7 @@
             </div>
           </div>
         </div>
-        <p class="text-center group">
-          <q-btn
-            v-if="canGoBack"
-            color="tertiary"
-            push
-            @click="goBack"
-            icon="keyboard_arrow_left"
-          >
-            Go back
-          </q-btn>
-          <q-btn
-            color="tertiary"
-            push
-            @click="$router.replace('/')"
-            icon-right="home"
-          >
-            Go home
-          </q-btn>
-        </p>
+        <wasd-navigation-buttons></wasd-navigation-buttons>
       </div>
     </div>
   </div>
@@ -100,10 +113,13 @@
 
   import gameCategoryEnum from './../utils/igdb/game-categories'
 
+  import WasdNavigationButtons from './child/WasdNavigationButtons.vue'
+
   export default {
     name: 'WasdGameInfosite',
 
     components: {
+      WasdNavigationButtons,
       QParallax,
       QSpinner,
       QIcon,
@@ -120,8 +136,7 @@
         gamePlatforms: [],
         platformsLoading: true,
         gameGenres: [],
-        genresLoading: true,
-        canGoBack: window.history.length > 1
+        genresLoading: true
       }
     },
 
@@ -261,10 +276,6 @@
           default:
             return 'Game'
         }
-      },
-
-      goBack () {
-        window.history.go(-1)
       }
     },
 

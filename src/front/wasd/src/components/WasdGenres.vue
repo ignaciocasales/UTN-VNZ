@@ -51,7 +51,7 @@
 
   import { mapGetters, mapActions } from 'vuex'
 
-  import igdb from './../api/igdb.js'
+  /* import igdb from './../api/igdb.js' */
 
   export default {
     name: 'WasdGenres',
@@ -75,7 +75,7 @@
     },
 
     beforeRouteEnter (to, from, next) {
-      igdb.getAllGenres()
+      /* igdb.getAllGenres()
         .then((response) => {
           let promises = []
           let genres = response.data
@@ -106,18 +106,18 @@
         })
         .catch((error) => {
           console.log(error)
-        })
+        }) */
     },
 
     beforeRouteUpdate (to, from, next) {
-      Promise.all([
+      /* Promise.all([
       ])
         .then((response) => {
           next()
         })
         .catch((error) => {
           console.error(error)
-        })
+        }) */
     },
 
     computed: {

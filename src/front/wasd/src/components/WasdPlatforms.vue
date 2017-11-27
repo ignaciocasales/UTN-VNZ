@@ -7,104 +7,70 @@
     </div>
     <div class="row justify-center">
       <div class="col-12" style="max-width: 1800px">
-        <h5 class="emphasize text-amber" v-if="pc.length > 0">PC ></h5>
+        <h5 class="emphasize text-amber" v-if="pc.length > 0">PC >
+          <a href="" @click.prevent="" class="text-muted">See more</a>
+        </h5>
         <div>
           <div class="row justify-center">
-            <q-card inline v-if="pc.length > 0" v-for="(game, index) in pc" :data="game" :key="game.id">
-              <q-card-media style="max-height: 250px;" overlay-position="full" class="cursor-pointer"
-                            @click="$router.push({ name: 'game', params: { id: game.id }})">
-                <img
-                  :src="('cover' in game) ?
-                    game.cover.url.replace('t_thumb','t_cover_uniform') :
-                  ('screenshots' in game) ?
-                    game.screenshots[0].url.replace('t_thumb','t_cover_uniform') :
-                  'http://via.placeholder.com/210x250'"
-                >
-
-                <q-card-title slot="overlay">
-                  <div class="text-secondary absolute-center"><strong>See More</strong></div>
-                </q-card-title>
-              </q-card-media>
-              <q-card-title style="max-width: 210px;">
-                <p class="no-padding no-margin" style="max-height: 40px;">
-                  {{ game.name.length >= 22 ? game.name.slice(0, 20) + '...' : game.name }}</p>
-              </q-card-title>
-            </q-card>
+            <wasd-card
+              v-if="pc.length > 0"
+              v-for="(game, index) in pc"
+              :data="game"
+              :key="game.id"
+              :game="game"
+            >
+            </wasd-card>
           </div>
         </div>
-        <h5 class="emphasize text-amber" v-if="ps4.length > 0">Play Station 4 ></h5>
+        <h5 class="emphasize text-amber" v-if="ps4.length > 0">Play Station 4 >
+          <a href="" @click.prevent="" class="text-muted">See more</a>
+        </h5>
         <div>
           <div class="row justify-center">
-            <q-card inline v-if="ps4.length > 0" v-for="(game, index) in ps4" :data="game" :key="game.id">
-              <q-card-media style="max-height: 250px;" overlay-position="full" class="cursor-pointer"
-                            @click="$router.push({ name: 'game', params: { id: game.id }})">
-                <img
-                  :src="('cover' in game) ?
-                    game.cover.url.replace('t_thumb','t_cover_uniform') :
-                  ('screenshots' in game) ?
-                    game.screenshots[0].url.replace('t_thumb','t_cover_uniform') :
-                  'http://via.placeholder.com/210x250'"
-                >
-
-                <q-card-title slot="overlay">
-                  <div class="text-secondary absolute-center"><strong>See More</strong></div>
-                </q-card-title>
-              </q-card-media>
-              <q-card-title style="max-width: 210px;">
-                <p class="no-padding no-margin" style="max-height: 40px;">
-                  {{ game.name.length >= 22 ? game.name.slice(0, 20) + '...' : game.name }}</p>
-              </q-card-title>
-            </q-card>
+            <wasd-card
+              v-if="ps4.length > 0"
+              v-for="(game, index) in ps4"
+              :data="game"
+              :key="game.id"
+              :game="game"
+            >
+            </wasd-card>
           </div>
         </div>
-        <h5 class="emphasize text-amber" v-if="xboxOne.length > 0">Xbox One ></h5>
+        <h5 class="emphasize text-amber" v-if="xboxOne.length > 0">Xbox One >
+          <a href="" @click.prevent="" class="text-muted">See more</a>
+        </h5>
         <div>
           <div class="row justify-center">
-            <q-card inline v-if="xboxOne.length > 0" v-for="(game, index) in xboxOne" :data="game" :key="game.id">
-              <q-card-media style="max-height: 250px;" overlay-position="full" class="cursor-pointer"
-                            @click="$router.push({ name: 'game', params: { id: game.id }})">
-                <img
-                  :src="('cover' in game) ?
-                    game.cover.url.replace('t_thumb','t_cover_uniform') :
-                  ('screenshots' in game) ?
-                    game.screenshots[0].url.replace('t_thumb','t_cover_uniform') :
-                  'http://via.placeholder.com/210x250'"
-                >
-
-                <q-card-title slot="overlay">
-                  <div class="text-secondary absolute-center"><strong>See More</strong></div>
-                </q-card-title>
-              </q-card-media>
-              <q-card-title style="max-width: 210px;">
-                <p class="no-padding no-margin" style="max-height: 40px;">
-                  {{ game.name.length >= 22 ? game.name.slice(0, 20) + '...' : game.name }}</p>
-              </q-card-title>
-            </q-card>
+            <wasd-card
+              v-if="xboxOne.length > 0"
+              v-for="(game, index) in xboxOne"
+              :data="game"
+              :key="game.id"
+              :game="game"
+            >
+            </wasd-card>
           </div>
         </div>
-        <h5 class="emphasize text-amber" v-if="nintendoSwitch.length > 0">Nintendo Switch ></h5>
+        <h5 class="emphasize text-amber" v-if="nintendoSwitch.length > 0">Nintendo Switch >
+          <a href="" @click.prevent="" class="text-muted">See more</a>
+        </h5>
         <div>
           <div class="row justify-center">
-            <q-card inline v-if="nintendoSwitch.length > 0" v-for="(game, index) in nintendoSwitch" :data="game" :key="game.id">
-              <q-card-media style="max-height: 250px;" overlay-position="full" class="cursor-pointer"
-                            @click="$router.push({ name: 'game', params: { id: game.id }})">
-                <img
-                  :src="('cover' in game) ?
-                    game.cover.url.replace('t_thumb','t_cover_uniform') :
-                  ('screenshots' in game) ?
-                    game.screenshots[0].url.replace('t_thumb','t_cover_uniform') :
-                  'http://via.placeholder.com/210x250'"
-                >
-
-                <q-card-title slot="overlay">
-                  <div class="text-secondary absolute-center"><strong>See More</strong></div>
-                </q-card-title>
-              </q-card-media>
-              <q-card-title style="max-width: 210px;">
-                <p class="no-padding no-margin" style="max-height: 40px;">
-                  {{ game.name.length >= 22 ? game.name.slice(0, 20) + '...' : game.name }}</p>
-              </q-card-title>
-            </q-card>
+            <wasd-card
+              v-if="nintendoSwitch.length > 0"
+              v-for="(game, index) in nintendoSwitch"
+              :data="game"
+              :key="game.id"
+              :game="game"
+            >
+            </wasd-card>
+          </div>
+        </div>
+        <hr>
+        <div>
+          <div class="row justify-center">
+            <wasd-navigation-buttons></wasd-navigation-buttons>
           </div>
         </div>
       </div>
@@ -114,13 +80,7 @@
 
 <script>
   import {
-    QCard,
-    QCardMedia,
-    QCardTitle,
     QIcon,
-    QCardMain,
-    QCardSeparator,
-    QCardActions,
     QBtn
   } from 'quasar'
 
@@ -128,17 +88,17 @@
 
   import igdb from './../api/igdb.js'
 
+  import WasdCard from './child/WasdCard.vue'
+
+  import WasdNavigationButtons from './child/WasdNavigationButtons.vue'
+
   export default {
     name: 'WasdPlatforms',
 
     components: {
-      QCard,
-      QCardMedia,
-      QCardTitle,
+      WasdNavigationButtons,
+      WasdCard,
       QIcon,
-      QCardMain,
-      QCardSeparator,
-      QCardActions,
       QBtn
     },
 

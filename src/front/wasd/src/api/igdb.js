@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const ENDPOINT = '/igdb'
-const API_KEY = ''
+const API_KEY = 'e544bd4d11d8e8b6b46e47bbbe6f7254'
 const TIMEOUT = 10000
 
 const randomDate = () => {
@@ -17,7 +17,7 @@ export default {
     return axios({
       baseURL: ENDPOINT,
 
-      url: '/games/?fields=id,cover,name,popularity&order=popularity:desc&limit=40&offset=' + offset,
+      url: '/games/?fields=id,cover,name,popularity&order=popularity:desc&limit=50&offset=' + offset,
 
       method: 'get',
 
@@ -139,8 +139,42 @@ export default {
     return axios({
       baseURL: ENDPOINT,
 
-      url: '/games/?fields=*&limit=10&filter[popularity][gt]=50&filter[platforms][eq]=' + platformId +
+      url: '/games/?fields=*&limit=4&filter[popularity][gt]=50&filter[platforms][eq]=' + platformId +
       '&filter[created_at][gt]=' + randomDate(),
+
+      method: 'get',
+
+      headers: {
+        'user-key': API_KEY,
+        'Accept': 'application/json'
+      },
+
+      timeout: TIMEOUT
+    })
+  },
+
+  getPulses (offset) {
+    return axios({
+      baseURL: ENDPOINT,
+
+      url: '/pulses/?fields=id,title,image,author,summary,url&limit=50&offset=' + offset,
+
+      method: 'get',
+
+      headers: {
+        'user-key': API_KEY,
+        'Accept': 'application/json'
+      },
+
+      timeout: TIMEOUT
+    })
+  },
+
+  getGameEngines (offset) {
+    return axios({
+      baseURL: ENDPOINT,
+
+      url: '/game_engines/?fields=*&limit=50&offset=' + offset,
 
       method: 'get',
 

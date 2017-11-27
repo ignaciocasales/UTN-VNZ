@@ -2,7 +2,9 @@
   <div class="layout-padding">
     <div class="row justify-center">
       <div class="col-12" style="max-width: 1800px">
-        <h4 class="text-primary">Popular games</h4>
+        <div class="row justify-center">
+          <h4 class="text-primary">Popular Games Right Now</h4>
+        </div>
       </div>
     </div>
     <div class="row justify-center">
@@ -11,25 +13,7 @@
           <q-infinite-scroll
             :handler="loadMore"
           >
-            <q-card inline v-for="(game, index) in popularGames" :data="game" :key="game.id">
-              <q-card-media style="max-height: 250px;" overlay-position="full" class="cursor-pointer" @click="$router.push({ name: 'game', params: { id: game.id }})">
-                <img
-                  :src="('cover' in game) ?
-                    game.cover.url.replace('t_thumb','t_cover_uniform') :
-                  ('screenshots' in game) ?
-                    game.screenshots[0].url.replace('t_thumb','t_cover_uniform') :
-                  'http://via.placeholder.com/210x250'"
-                >
-
-                <q-card-title slot="overlay">
-                  <div class="text-secondary absolute-center"><strong>See More</strong></div>
-                </q-card-title>
-              </q-card-media>
-              <q-card-title style="max-width: 210px;">
-                <p class="no-padding no-margin" style="max-height: 40px;">{{ game.name.length >= 22 ? game.name.slice(0, 20) + '...' : game.name }}</p>
-              </q-card-title>
-            </q-card>
-
+            <wasd-card v-for="(game, index) in popularGames" :data="game" :key="game.id" :game="game"></wasd-card>
             <div class="row justify-center" style="margin-bottom: 50px;">
               <q-spinner-dots slot="message" :size="40" />
             </div>
@@ -42,36 +26,19 @@
 
 <script>
   import {
-    QCarousel,
-    QCard,
-    QCardMedia,
-    QCardTitle,
-    QRating,
-    QIcon,
-    QCardMain,
-    QCardSeparator,
-    QCardActions,
-    QBtn,
     QInfiniteScroll,
     QSpinnerDots
   } from 'quasar'
 
   import igdb from './../api/igdb.js'
 
+  import WasdCard from './child/WasdCard.vue'
+
   export default {
     name: 'WasdDiscover',
 
     components: {
-      QCarousel,
-      QCard,
-      QCardMedia,
-      QCardTitle,
-      QRating,
-      QIcon,
-      QCardMain,
-      QCardSeparator,
-      QCardActions,
-      QBtn,
+      WasdCard,
       QInfiniteScroll,
       QSpinnerDots
     },
@@ -122,7 +89,7 @@
         //        DO NOT forget to call it otherwise your loading message
         //        will continue to be displayed
         // make some Ajax call then call done()
-        igdb.getPopularGames(20 * index)
+        igdb.getPopularGames(50 * index)
           .then((response) => {
             response.data.forEach((currentGame) => {
               this.popularGames.push(currentGame)
@@ -141,16 +108,5 @@
   }
 </script>
 
-<style scoped>
-  .q-card-media-overlay {
-    opacity: 0;
-    -webkit-transition: opacity 1s;
-    -moz-transition: opacity 1s;
-    -o-transition: opacity 1s;
-    transition: opacity 1s;
-  }
-
-  .q-card-media-overlay:hover {
-    opacity: 1;
-  }
+<style>
 </style>
