@@ -2,7 +2,9 @@
   <div class="layout-padding">
     <div class="row justify-center">
       <div class="col-12" style="max-width: 1800px">
-        <h4 class="text-primary">Games by platform</h4>
+        <div class="row justify-center">
+          <h4 class="text-primary">Games by platform</h4>
+        </div>
       </div>
     </div>
     <div class="row justify-center">

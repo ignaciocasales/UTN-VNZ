@@ -94,6 +94,13 @@ export default new VueRouter({
           name: 'game',
 
           component: load('WasdGameInfosite')
+        },
+        {
+          path: '/engines/:id',
+
+          name: 'engine',
+
+          component: load('WasdGameEngineInfosite')
         }
       ]
     },

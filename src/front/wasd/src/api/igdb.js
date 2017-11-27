@@ -174,7 +174,75 @@ export default {
     return axios({
       baseURL: ENDPOINT,
 
-      url: '/game_engines/?fields=*&limit=50&offset=' + offset,
+      url: '/game_engines/?fields=id,name,logo&limit=50&offset=' + offset,
+
+      method: 'get',
+
+      headers: {
+        'user-key': API_KEY,
+        'Accept': 'application/json'
+      },
+
+      timeout: TIMEOUT
+    })
+  },
+
+  getEngine (id) {
+    return axios({
+      baseURL: ENDPOINT,
+
+      url: '/game_engines/' + id + '/?fields=*',
+
+      method: 'get',
+
+      headers: {
+        'user-key': API_KEY,
+        'Accept': 'application/json'
+      },
+
+      timeout: TIMEOUT
+    })
+  },
+
+  getGames (gameList) {
+    return axios({
+      baseURL: ENDPOINT,
+
+      url: '/games/' + gameList.join() + '/?fields=*',
+
+      method: 'get',
+
+      headers: {
+        'user-key': API_KEY,
+        'Accept': 'application/json'
+      },
+
+      timeout: TIMEOUT
+    })
+  },
+
+  getPlatforms (platformsList) {
+    return axios({
+      baseURL: ENDPOINT,
+
+      url: '/platforms/' + platformsList.join() + '/?fields=*',
+
+      method: 'get',
+
+      headers: {
+        'user-key': API_KEY,
+        'Accept': 'application/json'
+      },
+
+      timeout: TIMEOUT
+    })
+  },
+
+  getCompanies (companiesList) {
+    return axios({
+      baseURL: ENDPOINT,
+
+      url: '/companies/' + companiesList.join() + '/?fields=*',
 
       method: 'get',
 

@@ -22,25 +22,22 @@
                   v-if="'name' in engine"
                   class="col-xs-12 col-sm-6 col-md-4"
                 >
-                  <div class="row justify-center">
+                  <div class="row justify-center engine-element" @click="$router.push({ name: 'engine', params: { id: engine.id }})">
                     <div class="col-2">
                       <q-parallax
-                        class="shadow-10"
                         :src="('logo' in engine) ? engine.logo.url : 'http://via.placeholder.com/90x90'"
                         :height="90"
-                        :width="90"
                         :speed="0"
-                        style="width: 90px;height: 90px;"
                       >
                         <div slot="loading">
                           <q-spinner-dots color="green"/>
                         </div>
                       </q-parallax>
                     </div>
-                    <div class="col-10 relative-position">
-                    <span class="absolute-center">
-                      {{ engine.name }}
-                    </span>
+                    <div class="col-10 relative-position" v-ripple>
+                      <span class="absolute-center">
+                        <router-link :to="{ name: 'engine', params: { id: engine.id }}" color="green">{{ engine.name }}</router-link>
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -63,12 +60,17 @@
     QBtn,
     QParallax,
     QSpinnerDots,
-    QInfiniteScroll
+    QInfiniteScroll,
+    Ripple
   } from 'quasar'
 
   import igdb from './../api/igdb'
 
   export default {
+    directives: {
+      Ripple
+    },
+
     name: 'WasdGameEngines',
 
     components: {
@@ -141,5 +143,11 @@
   }
 </script>
 
-<style>
+<style lang="styl">
+  @import '~variables'
+
+  .engine-element
+    cursor pointer
+    transition background 1.5s
+    box-shadow $shadow-5
 </style>

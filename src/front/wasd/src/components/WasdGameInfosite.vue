@@ -7,6 +7,7 @@
            gameDetails.screenshots[0].url.replace('t_thumb','t_screenshot_big') :
             'http://via.placeholder.com/1020x250'"
           :height="300"
+          :speed="0.5"
         >
           <div slot="loading">
             <q-spinner color="secondary"/>
@@ -88,6 +89,7 @@
             </div>
           </div>
         </div>
+        <hr>
         <wasd-navigation-buttons></wasd-navigation-buttons>
       </div>
     </div>

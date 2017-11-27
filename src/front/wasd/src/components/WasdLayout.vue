@@ -33,40 +33,40 @@
             <q-item-main label="Discover Games"/>
           </q-item>
         </q-side-link>
-        <q-side-link item to="/genres">
+        <!--<q-side-link item to="/genres">
           <q-item>
             <q-item-side icon="videogame asset"/>
             <q-item-main label="Genres"/>
           </q-item>
-        </q-side-link>
+        </q-side-link>-->
         <q-side-link item to="/platforms">
           <q-item>
             <q-item-side icon="list"/>
             <q-item-main label="Platforms"/>
           </q-item>
         </q-side-link>
-        <q-side-link item to="/soon">
+        <!--<q-side-link item to="/soon">
           <q-item>
             <q-item-side icon="hourglass empty"/>
             <q-item-main label="Coming Soon"/>
           </q-item>
-        </q-side-link>
-        <q-side-link item to="/releases">
+        </q-side-link>-->
+        <!--<q-side-link item to="/releases">
           <q-item>
             <q-item-side icon="new releases"/>
             <q-item-main label="New Releases"/>
           </q-item>
-        </q-side-link>
-        <q-side-link item to="/ratings">
+        </q-side-link>-->
+        <!--<q-side-link item to="/ratings">
           <q-item>
             <q-item-side icon="trending up"/>
             <q-item-main label="Ratings"/>
           </q-item>
-        </q-side-link>
+        </q-side-link>-->
         <q-side-link item to="/engines">
           <q-item>
             <q-item-side icon="memory"/>
-            <q-item-main label="Games Engines"/>
+            <q-item-main label="Game Engines"/>
           </q-item>
         </q-side-link>
         <q-side-link item to="/news">
