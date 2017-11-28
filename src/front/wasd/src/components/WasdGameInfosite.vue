@@ -15,7 +15,7 @@
         </q-parallax>
         <h4>{{ gameDetails.name }}</h4>
         <div class="row justify-center">
-          <q-card class="shadow-10" style="max-height: 250px;">
+          <q-card class="shadow-5">
             <q-card-media>
               <img
                 :src="('cover' in gameDetails) ?
@@ -26,6 +26,14 @@
                 Cover
               </q-card-title>
             </q-card-media>
+            <q-card-title>
+                Rate it:
+                <q-rating v-if="!isRated" @change="setRated" size="30px" color="secondary" v-model="currentRating" :max="5" icon="videogame asset"/>
+                <q-rating v-else size="30px" color="secondary" v-model="currentRating" :max="5" icon="videogame asset" disable/>
+              <div class="row">
+                Community Rating: {{ generalRating }}
+              </div>
+            </q-card-title>
           </q-card>
           <div class="col-xs-12 col-sm-9">
             <div class="row">
@@ -110,7 +118,8 @@
     QBtn,
     QCard,
     QCardMedia,
-    QCardTitle
+    QCardTitle,
+    QRating
   } from 'quasar'
 
   import { mapGetters, mapActions } from 'vuex'
@@ -125,6 +134,8 @@
 
   import steam from './../api/steam'
 
+  import io from 'socket.io-client'
+
   export default {
     name: 'WasdGameInfosite',
 
@@ -136,7 +147,8 @@
       QBtn,
       QCard,
       QCardMedia,
-      QCardTitle
+      QCardTitle,
+      QRating
     },
 
     data () {
@@ -147,7 +159,10 @@
         platformsLoading: true,
         gameGenres: [],
         genresLoading: true,
-        gamePrice: ''
+        gamePrice: '',
+        currentRating: 0,
+        generalRating: '',
+        isRated: false
       }
     },
 
@@ -218,6 +233,7 @@
       setGame (game) {
         this.gameDetails = game
         this.gameDetailsLoaded = true
+        this.socket.emit('load', this.gameDetails.id)
         if ('platforms' in game) {
           this.loadPlatforms(this.gameDetails.platforms)
             .then(() => {
@@ -329,11 +345,22 @@
           default:
             return 'Game'
         }
+      },
+
+      setRated () {
+        this.isRated = true
+        this.socket.emit('rated', { id: this.gameDetails.id, rating: this.currentRating })
       }
+
     },
 
     created () {
-
+      this.socket = io('http://localhost:3000')
+      this.socket.on('update', (data) => {
+        if (data.id === this.gameDetails.id) {
+          this.generalRating = data.generalRating.toFixed(2)
+        }
+      })
     }
   }
 </script>
