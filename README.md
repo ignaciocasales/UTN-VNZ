@@ -1,13 +1,17 @@
 # Build Setup
+
 > You'll need to run both **frontend** and **websockets** server.
+
 ``` bash
 # Clone the repository
 $ git clone https://github.com/ignaciocasales/WASD-Site
 
 # Go into project folder
 $ cd /YOUR_PATH/WASD-Site
+
 ```
 ## How to run the frontend with _Quasar-cli_?
+
 ``` bash
 # Go to frontend source folder
 $ cd src/front/wasd
@@ -24,7 +28,9 @@ $ quasar build
 # lint code
 $ quasar lint
 ```
+
 ## How to run the frontend with _NPM_?
+
 ``` bash
 # Go to frontend source folder
 $ cd src/front/wasd
@@ -41,7 +47,9 @@ $ npm run build
 # lint code
 $ npm run lint
 ```
+
 ## How to run the websockets server with _NPM_?
+
 ``` bash
 # Go to websockets source folder
 $ cd src/websockets
@@ -54,6 +62,7 @@ $ npm run start
 ```
 
 ## Add an api key to connect to IGDB
+
 > If you do not do this you wont be able to fetch any content.
 
 - Go to `\WASD-Site\src\front\wasd\src\api\igdb.js`
