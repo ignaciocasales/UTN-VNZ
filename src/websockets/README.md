@@ -1,4 +1,4 @@
-Run WebSockets for News Page
+Run WebSockets for Game Rating
 
 # dependency installation cmd
 npm install
